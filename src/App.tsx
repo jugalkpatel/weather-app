@@ -1,11 +1,12 @@
-import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import styles from "./App.module.css";
+import { useAppDispatch, useAppSelector } from "./store";
+import { increment } from "./counterSlice.slice";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const dispatch = useAppDispatch();
+  const count = useAppSelector((state) => state.counter.value);
   return (
     <>
       <div>
@@ -18,9 +19,7 @@ function App() {
       </div>
       <h1 className={styles.colorRed}>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <button onClick={() => dispatch(increment())}>count is {count}</button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
