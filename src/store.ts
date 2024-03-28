@@ -1,11 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
-
-import counterReducer from "./counterSlice.slice";
+import weatherReducer from "./slices/weather/weather.slice";
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    weather: weatherReducer,
   },
 });
 
