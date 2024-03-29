@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.weatherDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.temperatureText {
+  color: var(--text-primary);
+  font-size: var(--heroTextSize);
+  font-weight: 500;
+}
+
+.temperature {
+  display: flex;
+}
+
+.temperatureUnit {
+  font-size: 3rem; /* 48px */
+  line-height: 1;
+  font-weight: 400;
+}
+
+.dayTimeContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.dayTime {
+  font-weight: 500;
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
+}
+
+.day {
+  color: var(--text-primary);
+}
+
+.divider {
+  background-color: var(--background1);
+  height: 2px;
+  width: 80%;
+}
+
+.extra {
+  display: flex;
+  flex-direction: column;
+}
+
+.time {
+  color: var(--text-secondary);
+}

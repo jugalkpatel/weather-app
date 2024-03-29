@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import weatherReducer from "./slices/weather/weather.slice";
+import loadersReducer from "./slices/loaders.slice";
 
 export const store = configureStore({
   reducer: {
     weather: weatherReducer,
+    loader: loadersReducer,
   },
 });
 

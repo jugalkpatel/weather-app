@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import { ErrorPage } from "./components/ErrorPage/ErrorPage";
-import { Today } from "./components/Today/Today";
 import { PastSevenDays } from "./components/PastSevenDays/PastSevenDays";
 import { Layout } from "./components/Layout/Layout";
+import { Forecast } from "./components/Forecast/Forecast";
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Today />,
+        element: <Forecast />,
       },
       {
         path: "/past-7-days",
