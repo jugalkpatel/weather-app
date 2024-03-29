@@ -1,16 +1,24 @@
 .rootContainer {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.timelineContainer {
+  background-color: var(--background2);
+  border-radius: 0.5rem;
+}
+
+.daysListContainer {
   display: flex;
   gap: 1rem;
-  padding: 1rem;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
 }
 
 .container {
   display: flex;
-  /* flex: 1; */
-  /* flex-direction: column; */
   flex-direction: row;
   flex: 1;
   justify-content: space-between;
@@ -18,13 +26,10 @@
   background-color: var(--background2);
   padding: 0.7rem;
   border-radius: 0.8rem;
-  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
-  /* box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px; */
 }
 
 .tempContainer {
   display: flex;
-  /* gap: 1rem; */
 }
 
 .tmpText {
@@ -66,9 +71,21 @@
   width: 150px;
 }
 
+.timelineRootContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.heading {
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.75rem; /* 28px */
+  font-weight: 600;
+}
+
 @media screen and (min-width: 576px) {
   .icon {
-    width: 110px;
+    width: 100px;
   }
 
   .container {

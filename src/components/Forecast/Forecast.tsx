@@ -13,6 +13,8 @@ import { ForecastValue } from "../../slices/weather/weather.types";
 import { getDateTimeFromTimestamp } from "../../utils/getDateTimeInfo";
 import styles from "./Forecast.module.css";
 import { WhetherTimeline } from "../WeatherTimeline/WeatherTimeline";
+import { useSearchParams } from "react-router-dom";
+import { Spinner } from "../Spinner/Spinner";
 
 function useFetchForecast() {
   const location = useAppSelector(selectLocation);
@@ -37,30 +39,45 @@ export function Forecast() {
   useFetchForecast();
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Spinner />;
   }
 
   return (
-    <>
-      <div className={styles.rootContainer}>
-        {Object.keys(forecast).map((i) => {
-          return <ForecastCard key={i} {...forecast[i]} />;
-        })}
+    <div className={styles.rootContainer}>
+      <div className={styles.timelineRootContainer}>
+        <p className={styles.heading}>Weekly Forecast Highlights</p>
+        <div className={styles.daysListContainer}>
+          {Object.keys(forecast).map((i) => {
+            return <ForecastCard key={i} {...forecast[i]} />;
+          })}
+        </div>
       </div>
-      <WhetherTimeline />
-    </>
+
+      <div className={styles.timelineRootContainer}>
+        <p className={styles.heading}>Weekly Temperature Range</p>
+        <div className={styles.timelineContainer}>
+          <WhetherTimeline />
+        </div>
+      </div>
+    </div>
   );
 }
 
 function ForecastCard(props: ForecastValue) {
+  const [searchParams, setSearchParams] = useSearchParams();
   const { day } = getDateTimeFromTimestamp(Number(props.time));
   const weatherCode = props.weather_code;
   const icon = weatherIcons[weatherCode][1];
   const maxTemp = props.temperature_2m_max;
   const minTemp = props.temperature_2m_min;
 
+  const handleClick = () => {
+    searchParams.set("timestamp", props.time);
+    setSearchParams(searchParams);
+  };
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={handleClick}>
       <p className={styles.day}>{day}</p>
       <img
         src={icon}

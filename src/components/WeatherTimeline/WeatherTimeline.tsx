@@ -8,13 +8,24 @@ export function WhetherTimeline() {
 
   const series: ApexAxisChartSeries = [
     {
-      name: "Temperature",
+      name: "Max Temperature",
       data: Object.keys(forecast).map((i) => {
         const value = forecast[i];
 
         return {
           x: Number(value.time) * 1000,
           y: value.temperature_2m_max,
+        };
+      }),
+    },
+    {
+      name: "Min Temperature",
+      data: Object.keys(forecast).map((i) => {
+        const value = forecast[i];
+
+        return {
+          x: Number(value.time) * 1000,
+          y: value.temperature_2m_min,
         };
       }),
     },
@@ -47,7 +58,11 @@ export function WhetherTimeline() {
       },
     },
     legend: {
-      horizontalAlign: "left",
+      horizontalAlign: "center",
+      itemMargin: {
+        horizontal: 10,
+        vertical: 10,
+      },
     },
   };
 

@@ -1,4 +1,5 @@
 import clearDay from "./assets/clear-day.svg";
+import cloudy from "./assets/cloudy.svg";
 import clearNight from "./assets/clear-night.svg";
 import partlyCloudyDay from "./assets/partly-cloudy-day.svg";
 import partlyCloudyNight from "./assets/partly-cloudy-night.svg";
@@ -162,3 +163,32 @@ export const weatherIcons: Record<number, WeatherIcon> = {
     0: freezingRainNight,
   },
 };
+
+export function getCloudCoverValues(
+  value: number,
+  isDay: 0 | 1
+): { label: string; image: string } {
+  if (value >= 0 && value < 25) {
+    return { label: "Clear Sky", image: isDay ? clearDay : clearNight };
+  }
+
+  if (value >= 25 && value < 50) {
+    return {
+      label: "Partly cloudy",
+      image: isDay ? partlyCloudyDay : partlyCloudyNight,
+    };
+  }
+
+  if (value >= 50 && value < 75) {
+    return {
+      label: "Mostly cloudy",
+      image: cloudy,
+    };
+  }
+
+  if (value >= 75 && value < 100) {
+    return { image: isDay ? overcastDay : overcastNight, label: "Overcast" };
+  }
+
+  return { label: "Clear Sky", image: isDay ? clearDay : clearNight };
+}

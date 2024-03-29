@@ -1,0 +1,27 @@
+.progressContainer {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress {
+  width: 134.4px;
+  height: 67.2px;
+  border-radius: 224px 224px 0 0;
+  -webkit-mask: repeating-radial-gradient(
+    farthest-side at bottom,
+    #0000 0,
+    #000 1px 12%,
+    #0000 calc(12% + 1px) 20%
+  );
+  background: radial-gradient(farthest-side at bottom, #fea31f 0 95%, #0000 0)
+    bottom/0% 0% no-repeat #f6f6f7;
+  animation: progress-e37qus 1.6s infinite steps(6);
+}
+
+@keyframes progress-e37qus {
+  100% {
+    background-size: 120% 120%;
+  }
+}

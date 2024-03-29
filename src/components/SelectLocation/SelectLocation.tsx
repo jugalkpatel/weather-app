@@ -9,11 +9,13 @@ import { SingleValue } from "react-select";
 import { setLocation } from "../../slices/weather/weather.slice";
 const promiseOptions = (inputValue: string) => {
   return new Promise<LocationOption[]>((resolve, reject) => {
+    if (!inputValue) {
+      resolve([]);
+    }
+
     axios
       .get<LocationsResponse>(
-        `https://geocoding-api.open-meteo.com/v1/search?name=${
-          inputValue || "Aa"
-        }&count=10&language=en&format=json`
+        `https://geocoding-api.open-meteo.com/v1/search?name=${inputValue}&count=10&language=en&format=json`
       )
       .then((res) => {
         const { data } = res;
@@ -28,8 +30,6 @@ const promiseOptions = (inputValue: string) => {
             };
           }
         );
-
-        console.log({ locations });
 
         resolve(locations);
       })
@@ -59,6 +59,7 @@ export function SelectLocation() {
       onChange={handleLocationChange}
       classNamePrefix="react-select"
       noOptionsMessage={() => "No locations found. At least type two letters"}
+      placeholder="Search for places..."
     />
   );
 }
