@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+
 type ILoaderState = {
   actions: string[];
 };

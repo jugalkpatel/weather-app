@@ -18,6 +18,7 @@ import {
 } from "../../constants";
 import weatherStyles from "../WeatherCard/WeatherCard.module.css";
 import { getDateTimeInfo } from "../../utils/getDateTimeInfo";
+import { SelectLocation } from "../SelectLocation/SelectLocation";
 
 function Sidebar() {
   const location = useAppSelector(selectLocation);
@@ -88,7 +89,10 @@ export function Layout() {
 
   return (
     <div className={styles.container}>
-      <Sidebar />
+      <div className={styles.sidebarContainer}>
+        <SelectLocation />
+        <Sidebar />
+      </div>
       <div className={styles.contentContainer}>
         <Outlet />
       </div>
