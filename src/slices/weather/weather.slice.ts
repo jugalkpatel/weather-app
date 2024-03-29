@@ -71,8 +71,10 @@ export const fetchSevenDaysForecast = createAsyncThunk<
     try {
       dispatch(startAction({ action: FETCH_WEATHER_FORECAST }));
 
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
       const { data } = await axios.get<ForecastResponse>(
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&timeformat=unixtime&temperature_unit=${temperatureUnit}`
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&timeformat=unixtime&temperature_unit=${temperatureUnit}&timezone=${timezone}`
       );
 
       return data;
@@ -100,8 +102,10 @@ export const fetchCurrentWhether = createAsyncThunk<
     try {
       dispatch(startAction({ action: FETCH_CURRENT_WEATHER }));
 
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
       const { data } = await axios.get<CurrentWhetherDetails>(
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,is_day,precipitation,rain,weather_code,cloud_cover&temperature_unit=${temperatureUnit}`
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,is_day,precipitation,rain,weather_code,cloud_cover&temperature_unit=${temperatureUnit}&timezone=${timezone}`
       );
 
       return data;

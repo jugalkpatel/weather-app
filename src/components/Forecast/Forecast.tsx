@@ -12,6 +12,7 @@ import { FETCH_WEATHER_FORECAST, weatherIcons } from "../../constants";
 import { ForecastValue } from "../../slices/weather/weather.types";
 import { getDateTimeFromTimestamp } from "../../utils/getDateTimeInfo";
 import styles from "./Forecast.module.css";
+import { WhetherTimeline } from "../WeatherTimeline/WeatherTimeline";
 
 function useFetchForecast() {
   const location = useAppSelector(selectLocation);
@@ -40,11 +41,14 @@ export function Forecast() {
   }
 
   return (
-    <div className={styles.rootContainer}>
-      {Object.keys(forecast).map((i) => {
-        return <ForecastCard key={i} {...forecast[i]} />;
-      })}
-    </div>
+    <>
+      <div className={styles.rootContainer}>
+        {Object.keys(forecast).map((i) => {
+          return <ForecastCard key={i} {...forecast[i]} />;
+        })}
+      </div>
+      <WhetherTimeline />
+    </>
   );
 }
 

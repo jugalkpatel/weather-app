@@ -3,7 +3,7 @@ export function getDateTimeInfo(timestamp: string): {
   time: string;
   date: string;
 } {
-  const dateObj = new Date(`${timestamp}Z`);
+  const dateObj = new Date(timestamp);
 
   const day = dateObj.toLocaleDateString("en-US", { weekday: "long" });
   const time = dateObj.toLocaleTimeString("en-US", {
@@ -42,4 +42,10 @@ export function getDateTimeFromTimestamp(unixTimestamp: number): {
   }); // Adjust options for desired format
 
   return { day, time, date: dateString };
+}
+
+export function getStartOfDayTimestamp(timestamp: number): number {
+  const date = new Date(timestamp * 1000); // Convert to milliseconds for Date object
+  date.setHours(0, 0, 0, 0); // Set time components to zero
+  return Math.floor(date.getTime() / 1000); // Convert back to seconds and round down
 }
